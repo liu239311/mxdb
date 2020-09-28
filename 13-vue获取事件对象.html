@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      a链接点击会挑走 但不希望条 可以阻止默认事件
+      1.阻止默认行为 e.e.preventDefault()
+      2.阻止冒泡     e.stopPropagation()
+      //都需要event 如何获取?
+
+      //vue中获取事件对象
+      1.注册事件没有传参 直接通过形参即可获取
+      2.注册事件传参了   需要通过$event获取 event
+
+     -->
+    <div id="app">
+      <a href="http://www.baidu.com" @click=fn1>去百度fn1</a>
+      <a href="http://www.baidu.com" @click='fn2("zs","ls",$event)'>去百度fn2</a>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'hello vue'
+        },
+        methods:{
+          fn1(e){
+            e.preventDefault()
+          },
+          fn2(str,str2,e) {
+            e.preventDefault()
+            console.log(str,str2,e)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
