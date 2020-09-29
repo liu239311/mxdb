@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    全局过滤器 在所有vue实例中都可使用
+    局部过滤器 只在当前vue实例中 使用
+    如果 同时在一个实例中声明了全局和局部过滤器那么 会采用局部过滤器
+   -->
+  <div id="app">
+    {{ msg | time | demo}}
+  </div>
+  <div id="app2">
+    {{ msg | time | demo }}
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    Vue.filter('time', value => value + '_time')
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello vue'
+      }
+    })
+    const vm2 = new Vue({
+      el: '#app2',
+      data: {
+        msg: 'hello'
+      },
+      filters: {
+        demo: function (value) {
+          return value + '_demo'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

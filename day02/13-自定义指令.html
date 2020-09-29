@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input v-focus type="text">
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    //定义一个获取焦点指令
+    Vue.directive('focus',
+      {
+        //inserted函数 会在指令所在的元素被插入到页面中时执行
+        inserted: function (el) {
+          el.focus()
+        }
+      })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello vue'
+      }
+    })
+  </script>
+</body>
+
+</html>

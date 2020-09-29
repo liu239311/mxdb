@@ -16,8 +16,7 @@
       <h1>{{ msg }}</h1>
       <h1>{{ msg }}</h1>
     </div>
-    <!-- cloak 隐藏未编译的标签知道实例准备-->
-    <!-- 我们后续使用webpack 不需要担心页面刷新显示问题 -->
+    <!-- 目前基于webpack环境, 没有这个闪烁问题, 所有的模板都是直接在内存中编译解析的 v-cloak 没用 -->
     <script src="./vue.js"></script>
     <script>
       const vm = new Vue({

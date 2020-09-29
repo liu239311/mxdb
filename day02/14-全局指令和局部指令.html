@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <div v-log></div>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    // 全局指令: 在任何vue实例中, 都可以访问到
+    // 局部指令: 只能在当前vue实例中可以访问
+
+    Vue.directive('log', {
+      inserted: function (el) {
+        console.log("el")
+      }
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello vue'
+      },
+      directives: {
+        log: {
+          // 指令的定义
+          inserted: function (el) {
+            console.log('局部el')
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
