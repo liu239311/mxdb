@@ -23,8 +23,7 @@
     <div class="container">
 
       <!-- 输入框 -->
-      <input v-model.trim='inquireName' @keyup=code($event) v-focus type="text" class="form-control search"
-        placeholder="请输入搜索关键字">
+      <input v-focus type="text" class="form-control search" placeholder="请输入搜索关键字">
 
       <table class="table table-bordered table-hover">
         <thead>
@@ -45,7 +44,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="4">资产总价:{{ summation }}元</td>
+            <td colspan="4">资产总价:{{ summation || 0 }}元</td>
           </tr>
         </tfoot>
       </table>
@@ -89,16 +88,16 @@
           { id: 11, name: '鞋', price: 25.4 },
           { id: 25, name: '头发', price: 199 }
         ],
-        // listClone: [],
         name: '',
-        price: 0,
-        inquireName: ''
+        price: 0
       },
       methods: {
         del(id) {
           this.list = this.list.filter(item => item.id !== id)
         },
         add() {
+          if (this.name === '') return
+          if (this.price <= 0) return
           this.list.push({
             id: +new Date(),
             name: this.name,
@@ -106,17 +105,12 @@
           })
           this.name = ''
           this.price = 0
-        },
-        // code(e) {
-        //   if (e.keyCode === 13) {
-        //     this.listClone = this.list.filter(item => item.name === this.inquireName)
-        //   }
-        // }
-      }
-      , computed: {
+        }
+      },
+      computed: {
         summation() {
           let sum = null
-          for (key in this.list) { sum += this.list[key].price }
+          this.list.forEach(item => sum += item.price)
           return sum
         }
       }
