@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--                filter过滤器第一个参数默认为 要处理格式的值 -->
+    <h1>{{ date | time('YYYY年') }}</h1>
+    <h1>{{ date | time('YYYY年MM月') }}</h1>
+    <h1>{{ date | time('YYYY年MM月DD日') }}</h1>
+    <h1>{{ date | time('YYYY年MM月DD日 HH:mm:ss') }}</h1>
+  </div>
+  <script src="./node_modules/moment/moment.js"></script>
+  <script src="./vue.js"></script>
+  <script>
+    Vue.filter('time',(value,str) => {
+      return moment().format(str)
+    })
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        date: 1601348075835
+      }
+    })
+  </script>
+</body>
+
+</html>

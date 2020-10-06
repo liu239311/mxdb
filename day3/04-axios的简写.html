@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./node_modules/axios/dist/axios.js"></script>
+  <script>
+    // get 类型 params要放在对象中
+    // axios.get(`http://localhost:3000/list`, { params: { name_like: '外' } }).then(res => {
+    //   console.log(res.data)
+    // })
+    axios.delete(`http://localhost:3000/list/1601449792450`).then(res => {
+      console.log(res.data)
+    })
+    // post 类型 直接写参数
+    // axios.post(`http://localhost:3000/list`, { name: '棒棒糖', price: 10 }).then(res => {
+    //   console.log(res.data)
+    // })
+  </script>
+</body>
+
+</html>
